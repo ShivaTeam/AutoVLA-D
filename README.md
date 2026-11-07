@@ -1,24 +1,24 @@
-# TrajCond-VLA
+# AutoVLA-D
 
 **Learn a Trajectory-Geometric Condition from Reasoning for Autonomous Driving VLA**
 
 ![Paper: NeurIPS 2026](https://img.shields.io/badge/Paper-NeurIPS%202026-blue) [![License](https://img.shields.io/badge/License-Apache%202.0-green)](LICENSE)
 
-> TrajCond-VLA connects driving reasoning with trajectory geometry through a discrete action condition, *TrajCond*.
+> AutoVLA-D connects driving reasoning with trajectory geometry through a discrete action condition, *TrajCond*.
 > A two-stage learning pipeline first teaches trajectory-action semantics, then predicts continuous trajectories conditioned on the learned actions and reasoning.
 
 ## Overview
 
 ![Overview](assets/overview.png)
 
-TrajCond-VLA represents local differential motions as action tokens, providing a trajectory-geometric condition for continuous trajectory prediction.
+AutoVLA-D represents local differential motions as action tokens, providing a trajectory-geometric condition for continuous trajectory prediction.
 
 The same VLA model is trained in two supervised stages:
 
 - **Stage 1: TrajCond semantics learning** — Predict driving reasoning and discrete action tokens from the front-view image, high-level intent, and ego history
 - **Stage 2: TrajCond-conditioned planning** — Initialize from Stage 1 and generate discrete actions, driving reasoning, and the final continuous trajectory in the order `AT → CoT → PT`
 
-At inference, TrajCond-VLA generates the action condition and continuous trajectory in one autoregressive pass.
+At inference, AutoVLA-D generates the action condition and continuous trajectory in one autoregressive pass.
 
 The project supports KMeans, KDisks, and per-axis 1D-Brohan action representations. The main Brohan setting uses 768 action tokens, with 256 tokens for each of `dx`, `dy`, and `dyaw`. NAVSIM trajectories consist of eight future poses over four seconds at 2 Hz.
 
@@ -44,7 +44,7 @@ python codebook/build_codebook_from_gt.py --method kdisks --size 768
 
 See the full [codebook documentation](codebook/README.md).
 
-The `data_engine/` directory extends the configurable architecture of [DriveTeach-VLA](https://github.com/ShivaTeam/DriveTeach-VLA) to construct TrajCond-VLA training datasets:
+The `data_engine/` directory extends the configurable architecture of [DriveTeach-VLA](https://github.com/ShivaTeam/DriveTeach-VLA) to construct AutoVLA-D training datasets:
 
 - **Extract** — NAVSIM raw data → structured intermediate representation (SampleIR)
 - **Enrich** — Pluggable enricher chain: image path substitution, CoT merging, action encoding, error filtering, and trajectory normalization
