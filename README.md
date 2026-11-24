@@ -2,7 +2,7 @@
 
 **Learn a Trajectory-Geometric Condition from Reasoning for Autonomous Driving VLA**
 
-![Paper: NeurIPS 2026](https://img.shields.io/badge/Paper-NeurIPS%202026-blue) [![License](https://img.shields.io/badge/License-Apache%202.0-green)](LICENSE)
+![Paper: NeurIPS 2026](https://img.shields.io/badge/Paper-NeurIPS%202026-blue) [![arXiv](https://img.shields.io/badge/arXiv-2607.01658-red)](https://arxiv.org/abs/2611.12382) [![License](https://img.shields.io/badge/License-Apache%202.0-green)](LICENSE)
 
 > AutoVLA-D connects driving reasoning with trajectory geometry through a discrete action condition, *TrajCond*.
 > A two-stage learning pipeline first teaches trajectory-action semantics, then predicts continuous trajectories conditioned on the learned actions and reasoning.
@@ -41,6 +41,8 @@ python codebook/build_codebook_from_gt.py --method kdisks --size 768
 ```
 
 `--size` specifies the total number of action tokens. The Brohan builder uses inclusive min/max grids; each build also saves `action_variances.json` beside the codebook.
+
+The default `trajectory.pkl` contains BON-optimized trajectories. If you need the original trajectories instead, replace `trajectory.pkl` with `trajectory-gt.pkl`.
 
 See the full [codebook documentation](codebook/README.md).
 
